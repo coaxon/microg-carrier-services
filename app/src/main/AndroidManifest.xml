@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.android.ims">
+
+    <!-- Essential Permissions to trick Google Messages -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    <uses-permission android:name="com.google.android.apps.messaging.services.ACCESS_JIBESERVICE" />
+
+    <permission android:name="com.google.android.ims.providers.ACCESS_DATA" android:protectionLevel="normal" />
+    <permission android:name="com.google.android.ims.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature" />
+
+    <application
+        android:label="Carrier Services Stub"
+        android:persistent="true">
+
+        <!-- 1. CarrierMessagingService -->
+        <service android:name=".services.CarrierMessagingServiceStub"
+            android:permission="android.permission.BIND_CARRIER_SERVICES"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.carrier.CarrierMessagingService" />
+            </intent-filter>
+        </service>
+
+        <!-- 2. ImsService -->
+        <service android:name=".services.CarrierServicesImsServiceStub"
+            android:permission="android.permission.BIND_IMS_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.telephony.ims.ImsService" />
+            </intent-filter>
+        </service>
+
+        <!-- 3. RcsService -->
+        <service android:name=".services.RcsEngineServiceStub"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.ims.START_RCS_ENGINE" />
+            </intent-filter>
+        </service>
+
+        <!-- Providers -->
+        <provider android:name=".providers.BusinessInfoContentProviderStub"
+            android:authorities="com.google.android.ims.rcs.client.businessinfo"
+            android:exported="true" />
+            
+        <provider android:name=".providers.CarrierServicesLogProviderStub"
+            android:authorities="com.google.android.ims.providers.carrierserviceslogprovider"
+            android:exported="true" />
+            
+        <!-- Test Activity to verify EAP-AKA authentication -->
+        <activity android:name=".ui.TestAkaActivity"
+            android:exported="true"
+            android:label="EAP-AKA Test">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>
