@@ -45,4 +45,4 @@ We are looking for volunteers who meet the following criteria:
    - **Via Magisk**: Create a module placing the APK in `/system/priv-app/CarrierServices/` and add the permission whitelist XML (`privapp-permissions-com.google.android.ims.xml` granting `android.permission.READ_PRIVILEGED_PHONE_STATE`) to `/system/etc/permissions/`.
 3. **Run the Test**: Reboot, open the "EAP-AKA Test" app from your launcher, and trigger the handshake.
 
-Please refer to [issue #3586](https://github.com/microg/GmsCore/issues/3586) for submitting your test results (Logcat output of the EAP-AKA Test app). Your help is crucial to validating the clean-room implementation of TS.43 EAP-AKA without relying on Google binaries. Thank you!
+Please open a new issue in this repository (https://github.com/coaxon/microg-carrier-services/issues) with your Logcat output from the EAP-AKA Test app. We'll respond as quickly as possible. (Cross-referenced at microg/GmsCore #3586 for visibility.) Your help is crucial to validating the clean-room implementation of TS.43 EAP-AKA without relying on Google binaries. Thank you!
